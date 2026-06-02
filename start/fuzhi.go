@@ -54,10 +54,11 @@ const (
 func CToF(c Celsius) Fahrenheit { return Fahrenheit(c*9/5 + 32) }
 func FToC(f Fahrenheit) Celsius { return Celsius((f - 32) * 5 / 9) }
 
-func main() {
+func fzmain() {
 	fmt.Printf("%g\n", BoilingC-FreezingC) // "100" °C
 	boilingF := CToF(BoilingC)
 	fmt.Printf("%g\n", boilingF-CToF(FreezingC)) // "180" °F
-	fmt.Printf("%g\n", boilingF-FreezingC)
+	// 虽然它们底层都是 float64，但 Go 将它们视为不同的类型，以防止意外的单位混用
+	// fmt.Printf("%g\n", boilingF-FreezingC)
 	// compile error: type mismatch
 }
